@@ -56,35 +56,35 @@ app.use(router);
 // mongoose.connect("mongodb://localhost/onionscraperdb", { useNewUrlParser: true });
 var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
 
-// mongoose.connect(db, function(error) {
-//   if (error) {
-//     console.log(error);
-//   }
-//   else {
-//     console.log("MONGOOSE CONNECTION IS SUCCESSFUL");
-//   }
-// });
+mongoose.connect(db, function(error) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log("Mongoose connection is successful");
+  }
+});
 
 // mongoose.connect(MONGODB_URI);
 
 // Database configuration with mongoose
-var databaseUri = "mongodb://localhost/onionscraperdb";
+// var databaseUri = "mongodb://localhost/onionscraperdb";
 
-if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI);
-} else {
-  mongoose.connect(databaseUri);
-}
+// if (process.env.MONGODB_URI) {
+//   mongoose.connect(process.env.MONGODB_URI);
+// } else {
+//   mongoose.connect(databaseUri);
+// }
 
-var db = mongoose.connection;
+// var db = mongoose.connection;
 
-db.on("error", function (error) {
-  console.log("Mongoose Error: ", error);
-});
+// db.on("error", function (error) {
+//   console.log("Mongoose Error: ", error);
+// });
 
-db.once("open", function () {
-  console.log("Mongoose connection sucessful.");
-});
+// db.once("open", function () {
+//   console.log("Mongoose connection sucessful.");
+// });
 
 // // Routes
 

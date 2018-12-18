@@ -1,5 +1,8 @@
 var mongoose = require("mongoose");
 
+// Bring in the Mongoose Article mondel
+var Note = require("../models/Note");
+
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 

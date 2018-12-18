@@ -8,6 +8,8 @@ var cheerio = require("cheerio");
 
 // Require all models
 var db = require("../config/../models/Article");
+var db = require("../config/../models/index");
+// var db = require("../config/../models/note");
 
 // Routes
 
@@ -59,6 +61,8 @@ module.exports = function (router) {
         });
     });
 
+
+    
     // Route for getting all Articles from the db
     router.get("/articles", function (req, res) {
         // Grab every document in the Articles collection
