@@ -30,7 +30,7 @@ module.exports = function (router) {
             var $ = cheerio.load(response.data);
 
             // Now, we grab every h2 within an article tag, and do the following:
-            $("h5").each(function (i, element) {
+            $("h6.js_curation-click").each(function (i, element) {
                 // Save an empty result object
                 var result = {};
 
