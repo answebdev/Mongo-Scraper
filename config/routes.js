@@ -1,4 +1,5 @@
 // var scrape = require("../scripts/scrape");
+// var db = require("../models");
 var Article = require("../models/Article");
 var Note = require("../models/Note");
 var headlinesController = require("../controllers/headlines");
@@ -32,7 +33,7 @@ module.exports = function (router) {
             var $ = cheerio.load(response.data);
 
             // Now, we grab every h2 within an article tag, and do the following:
-            $("h6.js_curation-click").each(function (i, element) {
+            $("h1.headline").each(function (i, element) {
                 // Save an empty result object
                 var result = {};
 
@@ -40,9 +41,13 @@ module.exports = function (router) {
                 result.title = $(this)
                     .children("a")
                     .text();
+                result.excerpt = $(this)
+                    .parent().parent().find(".excerpt").text();
                 result.link = $(this)
                     .children("a")
                     .attr("href");
+
+                    console.log(result);
 
                 // Create a new Article using the `result` object built from scraping
                 db.Article.create(result)
