@@ -41,11 +41,17 @@ module.exports = function (router) {
                 result.title = $(this)
                     .children("a")
                     .text();
+                result.date = $(this)
+                    .parent()
+                    .text();
                 result.excerpt = $(this)
                     .parent().parent().find(".excerpt").text();
                 result.link = $(this)
                     .children("a")
                     .attr("href");
+                // result.image = $(this)
+                //     .children(".js_item-content").children("figure").children("a").children(".img-wrapper").children("picture").children("source").attr("data-srcset");
+                
 
                     console.log(result);
 
