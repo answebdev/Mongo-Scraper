@@ -167,3 +167,12 @@ a:hover {
 #article-card {
     display: none;
 }
+
+.article-link {
+    color: blue;
+    text-decoration: underline;
+}
+
+#headline {
+    font-size: 18px;
+}

@@ -3,8 +3,8 @@ $.getJSON("/articles", function (data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + "<strong>" + data[i].title + "</strong>" +
-      "<br />" + data[i].excerpt + "<br />" + data[i].link + "<br />" + data[i].date + "<p>" +
+    $("#articles").append("<p data-id='" + data[i]._id + "'>" + "<strong id='headline'>" + data[i].title + "</strong>" +
+      "<br />" + data[i].excerpt + "<br />" + "<a class='article-link' target='_blank' href=" + ">" + data[i].link + "</a>" + "<br />" + data[i].date + "<p>" +
       "<button class='btn btn-primary save-button' id='save-btn' name='{{this.id}}' type='submit'>Save Article</button>" +
       "<br />" + "<br />" + "<hr>" + "<br>");
   }
@@ -43,14 +43,12 @@ $(".clear").on("click", function (data) {
 // Hide Scrape nav button when clicked Saved Articles button
 $("#nav-saved").on("click", function (data) {
   $("#nav-scrape").hide();
-  // console.log("WAITING FOR MESSAGE");
   data.preventDefault();
 });
 
 // Hide Scrape nav button when clicked Saved Articles button
 $(".saved").on("click", function (data) {
   $("#nav-scrape").hide();
-  // console.log("WAITING FOR MESSAGE");
   data.preventDefault();
 });
 
