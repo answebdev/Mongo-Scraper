@@ -58,6 +58,28 @@ module.exports = function (router) {
                 
                     console.log(result);
 
+                     // Save these results in an object that we'll push into the results array we defined earlier
+//                if (result.title && result.link) {
+//                 var entry = new Article(result);
+//                 // Now, save that entry to the db
+//                 Article.update(
+//                     {link: result.link},
+//                     result,
+//                     { upsert: true },
+//                     function (error, doc){
+//                         if (error) {
+//                             console.log(error);
+//                         }
+//                     }
+//                 );
+//             }
+//         });
+//         res.json({"code" : "success"});
+//         // res.json(true);
+//     });
+// });
+
+
                 // Create a new Article using the `result` object built from scraping
                 db.Article.create(result)
                     .then(function (dbArticle) {

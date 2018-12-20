@@ -137,3 +137,9 @@ a:hover {
     border-color: #474B44;
     letter-spacing: 1.0px;
 }
+
+#none {
+    display: none;
+    font-weight: 700;
+    font-size: 18px;
+}
