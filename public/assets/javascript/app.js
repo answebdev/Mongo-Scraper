@@ -6,13 +6,17 @@ $.getJSON("/articles", function (data) {
     $("#articles").append("<p data-id='" + data[i]._id + "'>" + "<strong>" + data[i].title + "</strong>" +
       "<br />" + data[i].excerpt + "<br />" + data[i].link + "<br />" + data[i].date + "<p>" +
       "<button class='btn btn-primary save-button' id='save-btn' name='{{this.id}}' type='submit'>Save Article</button>" +
-      "<br />" + "<br />");
+      "<br />" + "<br />" + "<hr>" + "<br>");
   }
 });
 
-// $(document).on("click", ".clear", function() {
-//   // Empty the notes from the note section
-//   $("#articles").empty();
+// Show articles when clicking Scrape New Articles button
+$(".scrape").on("click", function (data) {
+  $("#article-card").show();
+  // $("#article-card").val("");
+  console.log("SCRAPE BUTTON CLICKED");
+  data.preventDefault();
+});
 
 // Clear articles when clicking Clear Articles button
 $(".clear").on("click", function (data) {
@@ -26,6 +30,27 @@ $(".clear").on("click", function (data) {
 $(".clear").on("click", function (data) {
   $("#none").show();
   console.log("WAITING FOR MESSAGE");
+  data.preventDefault();
+});
+
+// Show Question Card when clicking Clear Articles button
+$(".clear").on("click", function (data) {
+  $("#question-card").show();
+  console.log("WAITING FOR MESSAGE");
+  data.preventDefault();
+});
+
+// Hide Scrape nav button when clicked Saved Articles button
+$("#nav-saved").on("click", function (data) {
+  $("#nav-scrape").hide();
+  // console.log("WAITING FOR MESSAGE");
+  data.preventDefault();
+});
+
+// Hide Scrape nav button when clicked Saved Articles button
+$(".saved").on("click", function (data) {
+  $("#nav-scrape").hide();
+  // console.log("WAITING FOR MESSAGE");
   data.preventDefault();
 });
 

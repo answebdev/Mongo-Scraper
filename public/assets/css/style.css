@@ -9,12 +9,12 @@ html {
 
 body {
     /* position: relative; */
-    /* background-image: url("../images/newspapers03.JPG"); */
-    /* background: linear-gradient(to bottom, rgba(0,0,0,0.46) 100%, transparent), url("../images/newspapers03.JPG"); */
-    /* background-size: cover;
+    /* background-image: url("../images/newspapers03.JPG");
+    background: linear-gradient(to bottom, rgba(0,0,0,0.46) 100%, transparent), url("../images/newspapers03.JPG");
+    background-size: cover;
     background-repeat: no-repeat; */
 
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
     /* color: #ffffff; */
     /* color: #000000; */
 
@@ -29,7 +29,7 @@ body {
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    /* box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3); */
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
 }
 
 .navbar {
@@ -131,15 +131,39 @@ a:hover {
     letter-spacing: 1.0px;
 }
 
-#save-btn {
+#save-btn,
+.choice-btn {
     color: #ffffff;
     background-color: #474B44;
     border-color: #474B44;
     letter-spacing: 1.0px;
 }
 
-#none {
+.choice-btn:hover {
+    background-color:#ffffff;
+    border-color: #474B44;
+    color: #474B44!important;
+}
+
+#none,
+#question-card {
+    display: flex;
+    justify-content: center;
     display: none;
+    text-align: center;
     font-weight: 700;
     font-size: 18px;
+}
+
+#question-card {
+    background-color: #CBC6B3;
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+}
+
+.choice:hover {
+    color: #ffffff;
+}
+
+#article-card {
+    display: none;
 }
