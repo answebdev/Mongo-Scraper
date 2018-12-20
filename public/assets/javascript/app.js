@@ -70,3 +70,25 @@ $.getJSON("/articles", function(data) {
     $("#bodyinput").val("");
   });
   
+
+// articlePanel(article);
+
+//   function articlePanel(article) {
+//       var panel =
+//         $(["<div class='panel panel-default'>",
+//             "<div class='panel-heading'>"]),
+//             // "<h3>",
+//             result.title,
+//             "<a class='btn btn-success save'>",
+//             "Save Article",
+//             "</a>",
+//             "</h3>",
+//             "<div>",
+//             "<div class='panel-body'>",
+//             result.excerpt,
+//             "</div>",
+//             "</div>"
+//   ].join(""));
+//   panel.data("_id", result._id);
+//   return panel;
+//   }
