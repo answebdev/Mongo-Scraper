@@ -37,6 +37,8 @@ module.exports = function (router) {
                 // Save an empty result object
                 var result = {};
 
+
+
                 // Add the text and href of every link, and save them as properties of the result object
                 result.title = $(this)
                     .children("a")
@@ -50,9 +52,10 @@ module.exports = function (router) {
                     .children("a")
                     .attr("href");
                 // result.image = $(this)
-                //     .children(".js_item-content").children("figure").children("a").children(".img-wrapper").children("picture").children("source").attr("data-srcset");
+                    // .children(".js_item-content").children("figure").children("a").children(".img-wrapper").children("picture").children("source").attr("data-srcset");
                 
-
+            
+                
                     console.log(result);
 
                 // Create a new Article using the `result` object built from scraping
