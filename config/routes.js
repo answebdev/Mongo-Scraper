@@ -44,8 +44,8 @@ module.exports = function (router) {
                     .children("a")
                     .text();
                 result.date = $(this)
-                    .parent()
-                    .text();
+                    .next().find("time")//.children(".meta_container").children(".meta_time")
+                    .attr("datetime");
                 result.excerpt = $(this)
                     .parent().parent().find(".excerpt").text();
                 result.link = $(this)
@@ -53,10 +53,6 @@ module.exports = function (router) {
                     .attr("href");
                 // result.image = $(this)
                     // .children(".js_item-content").children("figure").children("a").children(".img-wrapper").children("picture").children("source").attr("data-srcset");
-                
-            
-                
-                    console.log(result);
 
                      // Save these results in an object that we'll push into the results array we defined earlier
 //                if (result.title && result.link) {
