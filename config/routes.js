@@ -16,12 +16,12 @@ var db = require("../config/../models/index");
 
 module.exports = function (router) {
     // This route renders the Index page
-    router.get("/", function(req, res) {
+    router.get("/", function (req, res) {
         res.render("index");
     });
 
     // This route renders the Saved Handlebars page
-    router.get("/saved", function(req, res) {
+    router.get("/saved", function (req, res) {
         res.render("saved");
     });
 
@@ -52,28 +52,28 @@ module.exports = function (router) {
                     .children("a")
                     .attr("href");
                 // result.image = $(this)
-                    // .children(".js_item-content").children("figure").children("a").children(".img-wrapper").children("picture").children("source").attr("data-srcset");
+                // .children(".js_item-content").children("figure").children("a").children(".img-wrapper").children("picture").children("source").attr("data-srcset");
 
-                     // Save these results in an object that we'll push into the results array we defined earlier
-//                if (result.title && result.link) {
-//                 var entry = new Article(result);
-//                 // Now, save that entry to the db
-//                 Article.update(
-//                     {link: result.link},
-//                     result,
-//                     { upsert: true },
-//                     function (error, doc){
-//                         if (error) {
-//                             console.log(error);
-//                         }
-//                     }
-//                 );
-//             }
-//         });
-//         res.json({"code" : "success"});
-//         // res.json(true);
-//     });
-// });
+                // Save these results in an object that we'll push into the results array we defined earlier
+                //                if (result.title && result.link) {
+                //                 var entry = new Article(result);
+                //                 // Now, save that entry to the db
+                //                 Article.update(
+                //                     {link: result.link},
+                //                     result,
+                //                     { upsert: true },
+                //                     function (error, doc){
+                //                         if (error) {
+                //                             console.log(error);
+                //                         }
+                //                     }
+                //                 );
+                //             }
+                //         });
+                //         res.json({"code" : "success"});
+                //         // res.json(true);
+                //     });
+                // });
 
 
                 // Create a new Article using the `result` object built from scraping
@@ -91,11 +91,12 @@ module.exports = function (router) {
 
             // Send a message to the client
             res.send("Scrape Complete");
+            console.log("**************************************************************************** Scrape Complete ****************************************************************************");
         });
     });
 
 
-    
+
     // Route for getting all Articles from the db
     router.get("/articles", function (req, res) {
         // Grab every document in the Articles collection

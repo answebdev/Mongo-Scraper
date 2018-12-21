@@ -77,7 +77,7 @@ $("#nav-scrape").on("click", function (event) {
   // Hide Scrape nav button when clicked Saved Articles button
   $("#nav-saved").on("click", function (data) {
     $("#nav-scrape").hide();
-    data.preventDefault();
+    // data.preventDefault();
   });
 
   // Hide Scrape nav button when clicked Saved Articles button
