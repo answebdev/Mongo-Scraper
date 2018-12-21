@@ -79,6 +79,7 @@ module.exports = function (router) {
                 // Create a new Article using the `result` object built from scraping
                 db.Article.create(result)
                     .then(function (dbArticle) {
+                        res.JSON(dbArticle)
                         // View the added result in the console
                         console.log(dbArticle);
                     })

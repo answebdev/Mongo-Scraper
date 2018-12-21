@@ -10,130 +10,144 @@ $.getJSON("/articles", function (data) {
   }
 });
 
-// Show articles when clicking Scrape New Articles button
-$(".scrape").on("click", function (data) {
+// Scrape and show articles in browser when clicking Scrape New Articles button
+$(".scrape").on("click", function (event) {
+  event.preventDefault();
   $("#article-card").show();
   $.getJSON("/scrape", function (data) {
     console.log(data);
   }).then(function (data) {
     // window.location.href = "/";
-    res.render("/scrape");
-  // $("#article-card").val("");
-  console.log("SCRAPE BUTTON CLICKED");
-  data.preventDefault();
+    $.append("/");
+    // $("#article-card").val("");
+    console.log("SCRAPE BUTTON CLICKED");
+  });
 });
 
-// Scrape articles when clicking Scrape New Articles button
-$(document).on("click", ".scrape", function () {
+$("#nav-scrape").on("click", function (event) {
+  event.preventDefault();
+  $("#article-card").show();
   $.getJSON("/scrape", function (data) {
     console.log(data);
   }).then(function (data) {
     // window.location.href = "/";
-    res.render("/scrape");
+    $.append("/");
+    // $("#article-card").val("");
+    console.log("SCRAPE BUTTON CLICKED");
   });
 });
 
+  // Scrape articles when clicking Scrape New Articles button
+  // $(document).on("click", ".scrape", function () {
+  //   $.getJSON("/scrape", function (data) {
+  //     console.log(data);
+  //   }).then(function (data) {
+  //     // window.location.href = "/";
+  //     res.render("/scrape");
+  //   });
+  // });
 
 
 
 
 
-// Clear articles when clicking Clear Articles button
-$(".clear").on("click", function (data) {
-  $("#article-card").empty();
-  // $("#article-card").val("");
-  console.log("CLEAR BUTTON CLICKED");
-  data.preventDefault();
-});
 
-// Show message when clicking Clear Articles button
-$(".clear").on("click", function (data) {
-  $("#none").show();
-  console.log("WAITING FOR MESSAGE");
-  data.preventDefault();
-});
+  // Clear articles when clicking Clear Articles button
+  $(".clear").on("click", function (data) {
+    $("#article-card").empty();
+    // $("#article-card").val("");
+    console.log("CLEAR BUTTON CLICKED");
+    data.preventDefault();
+  });
 
-// Show Question Card when clicking Clear Articles button
-$(".clear").on("click", function (data) {
-  $("#question-card").show();
-  console.log("WAITING FOR MESSAGE");
-  data.preventDefault();
-});
+  // Show message when clicking Clear Articles button
+  $(".clear").on("click", function (data) {
+    $("#none").show();
+    console.log("WAITING FOR MESSAGE");
+    data.preventDefault();
+  });
 
-// Hide Scrape nav button when clicked Saved Articles button
-$("#nav-saved").on("click", function (data) {
-  $("#nav-scrape").hide();
-  data.preventDefault();
-});
+  // Show Question Card when clicking Clear Articles button
+  $(".clear").on("click", function (data) {
+    $("#question-card").show();
+    console.log("WAITING FOR MESSAGE");
+    data.preventDefault();
+  });
 
-// Hide Scrape nav button when clicked Saved Articles button
-$(".saved").on("click", function (data) {
-  $("#nav-scrape").hide();
-  // data.preventDefault();
-});
+  // Hide Scrape nav button when clicked Saved Articles button
+  $("#nav-saved").on("click", function (data) {
+    $("#nav-scrape").hide();
+    data.preventDefault();
+  });
 
-// Whenever someone clicks a p tag
-$(document).on("click", "p", function () {
-  // Empty the notes from the note section
-  $("#notes").empty();
-  // Save the id from the p tag
-  var thisId = $(this).attr("data-id");
+  // Hide Scrape nav button when clicked Saved Articles button
+  $(".saved").on("click", function (data) {
+    $("#nav-scrape").hide();
+    // data.preventDefault();
+  });
 
-  // Now make an ajax call for the Article
-  $.ajax({
-    method: "GET",
-    url: "/articles/" + thisId
-  })
-    // With that done, add the note information to the page
-    .then(function (data) {
-      console.log(data);
-      // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
-      // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
-      // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-      // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+  // Whenever someone clicks a p tag
+  $(document).on("click", "p", function () {
+    // Empty the notes from the note section
+    $("#notes").empty();
+    // Save the id from the p tag
+    var thisId = $(this).attr("data-id");
 
-      // If there's a note in the article
-      if (data.note) {
-        // Place the title of the note in the title input
-        $("#titleinput").val(data.note.title);
-        // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
+    // Now make an ajax call for the Article
+    $.ajax({
+      method: "GET",
+      url: "/articles/" + thisId
+    })
+      // With that done, add the note information to the page
+      .then(function (data) {
+        console.log(data);
+        // The title of the article
+        $("#notes").append("<h2>" + data.title + "</h2>");
+        // An input to enter a new title
+        $("#notes").append("<input id='titleinput' name='title' >");
+        // A textarea to add a new note body
+        $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+        // A button to submit a new note, with the id of the article saved to it
+        $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+
+        // If there's a note in the article
+        if (data.note) {
+          // Place the title of the note in the title input
+          $("#titleinput").val(data.note.title);
+          // Place the body of the note in the body textarea
+          $("#bodyinput").val(data.note.body);
+        }
+      });
+  });
+
+  // When you click the savenote button
+  $(document).on("click", "#savenote", function () {
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+      method: "POST",
+      url: "/articles/" + thisId,
+      data: {
+        // Value taken from title input
+        title: $("#titleinput").val(),
+        // Value taken from note textarea
+        body: $("#bodyinput").val()
       }
-    });
-});
+    })
+      // With that done
+      .then(function (data) {
+        // Log the response
+        console.log(data);
+        // Empty the notes section
+        $("#notes").empty();
+      });
 
-// When you click the savenote button
-$(document).on("click", "#savenote", function () {
-  // Grab the id associated with the article from the submit button
-  var thisId = $(this).attr("data-id");
-
-  // Run a POST request to change the note, using what's entered in the inputs
-  $.ajax({
-    method: "POST",
-    url: "/articles/" + thisId,
-    data: {
-      // Value taken from title input
-      title: $("#titleinput").val(),
-      // Value taken from note textarea
-      body: $("#bodyinput").val()
-    }
-  })
-    // With that done
-    .then(function (data) {
-      // Log the response
-      console.log(data);
-      // Empty the notes section
-      $("#notes").empty();
-    });
-
-  // Also, remove the values entered in the input and textarea for note entry
-  $("#titleinput").val("");
-  $("#bodyinput").val("");
-});
+    // Also, remove the values entered in the input and textarea for note entry
+    $("#titleinput").val("");
+    $("#bodyinput").val("");
+  });
 
 
 // articlePanel(article);
