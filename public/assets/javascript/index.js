@@ -1,3 +1,3 @@
 // Logic for index.handlebars
 
-console.log("HELLO FROM INDEXjs");
+// console.log("HELLO FROM INDEXjs");

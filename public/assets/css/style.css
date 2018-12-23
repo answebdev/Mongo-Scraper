@@ -55,6 +55,10 @@ a:hover {
     color: #CBC6B3;
 }
 
+#handleLink {
+    color: blue;
+}
+
 .top-container {
     height: 100%;
     display: flex;
@@ -118,7 +122,8 @@ a:hover {
     height: auto;
 }
 
-#article-card {
+#article-card,
+#savedArticle-card {
     width: 100%;
 }
 

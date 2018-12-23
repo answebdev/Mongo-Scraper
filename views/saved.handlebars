@@ -19,29 +19,21 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-12" id="article-card">
+    <div class="col-md-12" id="savedArticle-card">
       <ul class="list-group">
         <li class="list-group-item active">Saved Articles</li>
-        <li class="list-group-item">
-
-
-          {{!-- {{#each response.data}}
-          {{#unless this.devoured}} --}}
-
-          {{!-- <p><button class="btn btn-primary btn-sm devour-button" id="articles" name="{{this.id}}" type="submit">Save
-              Article</button>&nbsp; &nbsp;
-            {{result.title}}
-          </p> --}}
-
-          {{!-- {{/unless}}
-          {{/each}} --}}
+        <li class="list-group-item" id="savedArticle">
+          <p>{{article.title}}</p>
+          <p>{{article.excerpt}}</p>
+          <a id="handleLink" href="{{article.link}}">{{article.link}}</a>
+          <p>{{article.date}}</p>
         </li>
         </li>
       </ul>
     </div>
   </div>
 
-  <script>
+  {{!-- <script>
 
     $(document).ready(function () {
     
@@ -50,4 +42,4 @@
       );
     });
 
-  </script>
+  </script> --}}

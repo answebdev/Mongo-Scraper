@@ -49,7 +49,7 @@ var router = express.Router();
 // Require routes file pass router object
 require("./config/routes")(router);
 
-// Have every request go through router middlewar
+// Have every request go through router middleware
 app.use(router);
 
 // Connect to the Mongo DB
