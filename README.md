@@ -26,10 +26,10 @@ Mongo-Scraper is not yet ready for deployment.
 
 # Screenshots
 
-![Screenshot 01](screenshots/mongoScraper-screenshot01.png "Home Page")
+![Screenshot 01](screenshots/mongoScraper-screenshot01.jpg "Home Page")
 
 ![Screenshot 01](screenshots/mongoScraper-screenshot02.png "List of Scraped Articles")
 
-![Screenshot 01](screenshots/mongoScraper-screenshot03.png "Saved Articles")
+![Screenshot 01](screenshots/mongoScraper-screenshot03.jpg "Saved Articles")
 
 ![Screenshot 01](screenshots/mongoScraper-screenshot04.png "The Onion sample page")
