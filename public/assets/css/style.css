@@ -178,6 +178,7 @@ a:hover {
     text-decoration: underline;
 }
 
-#headline {
+#headline,
+#savedHeadline {
     font-size: 18px;
 }

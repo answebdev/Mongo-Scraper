@@ -10,35 +10,12 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("../config/../models/Article");
 var db = require("../config/../models/index");
-// var db = require("../config/../models/note");
 
 // Routes
-
 module.exports = function (router) {
     // This route renders the Index page
     router.get("/", function (req, res) {
         res.render("index");
-    });
-
-    // This route renders the Saved Handlebars page
-    router.get("/saved/:id", function (req, res) {
-        console.log("INSIDE SAVED ROUTE");
-        let data;
-        // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-        db.Article.findOne({ _id: req.params.id })
-            // ..and populate all of the notes associated with it
-            // .populate("note")
-            .then(function (dbArticle) {
-                // If we were able to successfully find an Article with the given id, send it back to the client
-                data = dbArticle;
-                console.log(data)
-                console.log(`data: ${data}`);
-                return res.render("saved", { article: data }); // ES6 way is just { data }
-            })
-            .catch(function (err) {
-                // If an error occurred, send it to the client
-                return res.render("error", { err })
-            });
     });
 
     // A GET route for scraping The Onion website
@@ -68,26 +45,26 @@ module.exports = function (router) {
                 // result.image = $(this)
                 // .children(".js_item-content").children("figure").children("a").children(".img-wrapper").children("picture").children("source").attr("data-srcset");
 
-                // Save these results in an object that we'll push into the results array we defined earlier
-                //                if (result.title && result.link) {
-                //                 var entry = new Article(result);
-                //                 // Now, save that entry to the db
-                //                 Article.update(
-                //                     {link: result.link},
-                //                     result,
-                //                     { upsert: true },
-                //                     function (error, doc){
-                //                         if (error) {
-                //                             console.log(error);
-                //                         }
-                //                     }
-                //                 );
-                //             }
-                //         });
-                //         res.json({"code" : "success"});
-                //         // res.json(true);
-                //     });
-                // });
+                // This route renders the Saved Handlebars page
+                router.get("/saved/:id", function (req, res) {
+                    console.log("INSIDE SAVED ROUTE");
+                    let data;
+                    // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+                    db.Article.findOne({ _id: req.params.id })
+                        // ..and populate all of the notes associated with it
+                        // .populate("note")
+                        .then(function (dbArticle) {
+                            // If we were able to successfully find an Article with the given id, send it back to the client
+                            data = dbArticle;
+                            console.log(data)
+                            console.log(`data: ${data}`);
+                            return res.render("saved", { article: data }); // ES6 way is just { data }
+                        })
+                        .catch(function (err) {
+                            // If an error occurred, send it to the client
+                            return res.render("error", { err })
+                        });
+                });
 
 
                 // Create a new Article using the `result` object built from scraping
@@ -139,7 +116,7 @@ module.exports = function (router) {
             });
     });
 
-
+}
 
 
 
@@ -184,9 +161,6 @@ module.exports = function (router) {
     // });
 
 
-
-
-
     // router.put('/saved', (req, res) => {
 
     //     let id = req.body.id;
@@ -207,9 +181,6 @@ module.exports = function (router) {
     //      });
 
     //   });
-
-
-
 
 
     // Route for grabbing a specific Article by id, populate it with it's note
@@ -247,5 +218,3 @@ module.exports = function (router) {
     //             res.json(err);
     //         });
     // });
-
-}
