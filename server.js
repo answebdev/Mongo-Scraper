@@ -41,7 +41,7 @@ require("./config/routes")(router);
 // Have every request go through router middleware
 app.use(router);
 
-// Connect to the Mongo DB
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
 
 mongoose.connect(db, function (error) {
