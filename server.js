@@ -13,7 +13,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
-var db = require("./models");
+var models = require("./models");
 
 var PORT = 3000;
 
@@ -45,17 +45,16 @@ app.use(router);
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
-mongoose.connect(MONGODB_URI);
+var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
 
-// mongoose.connect(db, function (error) {
-//   if (error) {
-//     console.log(error);
-//   }
-//   else {
-//     console.log("Mongoose connection is successful");
-//   }
-// });
+mongoose.connect(db, function (error) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log("Mongoose connection is successful");
+  }
+});
 
 
 
