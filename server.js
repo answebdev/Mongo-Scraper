@@ -44,7 +44,7 @@ app.use(router);
 
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://heroku_z4pc1jc3:at937nnf358d3lf4i10fv4bhir@ds119113.mlab.com:19113/heroku_z4pc1jc3");
+mongoose.connect("mongodb://heroku_t3qz1ftq:3924sd2sisot7tveq96vf1efk1@ds117623.mlab.com:17623/heroku_t3qz1ftq");
 //mongoose.connect("mongodb://onionscraperdb");
 var db = mongoose.connection;
 
