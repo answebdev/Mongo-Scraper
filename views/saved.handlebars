@@ -42,11 +42,18 @@
         </div>
       </div> --}}
 
-
       <!-- Button trigger modal -->
       {{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Launch demo modal
       </button> --}}
+
+
+      {{!-- Notes - use these:
+      article._id
+      article.title
+      article.excerpt
+      article.link --}}
+
 
       <!-- Modal -->
       <div class="modal fade modalNote" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -73,7 +80,7 @@
               {{else}}
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <h6>No notes for this article yet.</h6>
+                  <h6 id="note-message">No notes for this article yet.</h6>
                 </div><p></p>
               </div>
               {{/if}}

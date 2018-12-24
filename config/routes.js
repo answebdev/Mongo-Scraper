@@ -94,7 +94,7 @@ module.exports = function (router) {
     // Route for getting all Articles from the db
     router.get("/articles", function (req, res) {
         // Grab every document in the Articles collection
-        db.Article.find({})
+        db.Article.find({}).sort({date: -1})
             .then(function (dbArticle) {
                 // If we were able to successfully find Articles, send them back to the client
                 res.json(dbArticle);
@@ -147,38 +147,39 @@ module.exports = function (router) {
 
 
     // Create a new note
-router.post("/notes/save/:id", function(req, res) {
-    // Create a new note and pass the req.body to the entry
-    var newNote = new Note({
-      body: req.body.text,
-      article: req.params.id
-    });
-    console.log(req.body)
-    // And save the new note the db
-    newNote.save(function(error, note) {
-      // Log any errors
-      if (error) {
-        console.log(error);
-      }
-      // Otherwise
-      else {
-        // Use the article id to find and update it's notes
-        dbArticle.findOneAndUpdate({ "_id": req.params.id }, {$push: { "notes": note } })
-        // Execute the above query
-        .exec(function(err) {
-          // Log any errors
-          if (err) {
-            console.log(err);
-            res.send(err);
-          }
-          else {
-            // Or send the note to the browser
-            res.send(note);
-          }
+    router.post("/notes/save/:id", function (req, res) {
+        // Create a new note and pass the req.body to the entry
+        var newNote = new Note({
+            body: req.body.text,
+            article: req.params.id
         });
-      }
+        console.log(req.body)
+        // And save the new note the db
+        newNote.save(function (error, note) {
+            // Log any errors
+            if (error) {
+                console.log(error);
+            }
+            // Otherwise
+            else {
+                // Use the article id to find and update it's notes
+                dbArticle.findOneAndUpdate({ "_id": req.params.id }, { $push: { "notes": note } })
+                    // Execute the above query
+                    .exec(function (err) {
+                        // Log any errors
+                        if (err) {
+                            console.log(err);
+                            res.send(err);
+                        }
+                        else {
+                            // Or send the note to the browser
+                            res.send(note);
+                            // console.log(note);
+                        }
+                    });
+            }
+        });
     });
-  });
 
 
 
