@@ -43,21 +43,18 @@ app.use(router);
 
 
 
-// Database configuration with mongoose
-mongoose.connect("mongodb://heroku_t3qz1ftq:3924sd2sisot7tveq96vf1efk1@ds117623.mlab.com:17623/heroku_t3qz1ftq");
-//mongoose.connect("mongodb://onionscraperdb");
+
+// //connecting to MongoDB
+mongoose.connect('mongodb://heroku_t3qz1ftq:3924sd2sisot7tveq96vf1efk1@ds117623.mlab.com:17623/heroku_t3qz1ftq');
+
+// mongoose.connect('mongodb://localhost/scraper_news');
+
+
 var db = mongoose.connection;
-
-// Show any mongoose errors
-db.on("error", function(error) {
-  console.log("Mongoose Error: ", error);
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('Connected to Mongoose!')
 });
-
-// Once logged in to the db through mongoose, log a success message
-db.once("open", function() {
-  console.log("Mongoose connection successful.");
-});
-
 
 
 // var connectionString = "mongodb://localhost/onionscraperdb";
