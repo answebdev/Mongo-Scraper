@@ -45,39 +45,39 @@ app.use(router);
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
+var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
 
-// mongoose.connect(db, function (error) {
-//   if (error) {
-//     console.log(error);
-//   }
-//   else {
-//     console.log("Mongoose connection is successful");
-//   }
+mongoose.connect(db, function (error) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log("Mongoose connection is successful");
+  }
+});
+
+
+
+
+// var databaseUri = "mongodb://localhost/onionscraperdb";
+// // This executes if this is being executed in the Heroku app
+// if (process.env.MONGODB_URI) {
+//   mongoose.connect(process.env.MONGODB_URI);
+// } else {
+// // This executes if this is being executed on local machine
+// } mongoose.connect(databaseUri);
+
+// var db = mongoose.connection;
+
+// // Show any Mongoose errors
+// db.on("error", function(err) {
+//   console.log("Mongoose Error: ", err);
 // });
 
-
-
-
-var databaseUri = "mongodb://localhost/onionscraperdb";
-// This executes if this is being executed in the Heroku app
-if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI);
-} else {
-// This executes if this is being executed on local machine
-} mongoose.connect(databaseUri);
-
-var db = mongoose.connection;
-
-// Show any Mongoose errors
-db.on("error", function(err) {
-  console.log("Mongoose Error: ", err);
-});
-
-// Once logged in to the db through Mongoose, log to a success message
-db.once("open", function() {
-  console.log("Mongoose connection is successful.");
-});
+// // Once logged in to the db through Mongoose, log to a success message
+// db.once("open", function() {
+//   console.log("Mongoose connection is successful.");
+// });
 
 // Start the server
 app.listen(PORT, function () {
