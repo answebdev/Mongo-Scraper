@@ -109,8 +109,6 @@ module.exports = function (router) {
     router.get("/articles/:id", function (req, res) {
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
         db.Article.findOne({ _id: req.params.id })
-            // ..and populate all of the notes associated with it
-            // .populate("note")
             .then(function (dbArticle) {
                 // If we were able to successfully find an Article with the given id, send it back to the client
                 res.json(dbArticle);
@@ -120,6 +118,78 @@ module.exports = function (router) {
                 res.json(err);
             });
     });
+
+    // Delete a specific article
+    router.get("/delete/:id", function (req, res) {
+        // Remove an article using the objectID
+        db.Article.remove(
+            {
+                _id: mongojs.ObjectID(req.params.id)
+            },
+            function (error, removed) {
+                console.log("A R T I C L E       D E L E T ED");
+                // Log any errors from mongojs
+                if (error) {
+                    console.log(error);
+                    res.send(error);
+                }
+                else {
+                    // Otherwise, send the mongojs response to the browser
+                    // This will fire off the success function of the ajax request
+                    console.log(removed);
+                    res.send(removed);
+                }
+            }
+        );
+    });
+
+
+
+
+    // Create a new note
+router.post("/notes/save/:id", function(req, res) {
+    // Create a new note and pass the req.body to the entry
+    var newNote = new Note({
+      body: req.body.text,
+      article: req.params.id
+    });
+    console.log(req.body)
+    // And save the new note the db
+    newNote.save(function(error, note) {
+      // Log any errors
+      if (error) {
+        console.log(error);
+      }
+      // Otherwise
+      else {
+        // Use the article id to find and update it's notes
+        dbArticle.findOneAndUpdate({ "_id": req.params.id }, {$push: { "notes": note } })
+        // Execute the above query
+        .exec(function(err) {
+          // Log any errors
+          if (err) {
+            console.log(err);
+            res.send(err);
+          }
+          else {
+            // Or send the note to the browser
+            res.send(note);
+          }
+        });
+      }
+    });
+  });
+
+
+
+
+    // Update the articles
+    router.patch("/api/articles", function (req, res) {
+        dbArticle.update(req.body, function (err, data) {
+            res.json(data);
+        });
+    });
+
 
 }
 
