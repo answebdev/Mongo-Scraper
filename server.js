@@ -43,18 +43,50 @@ app.use(router);
 
 
 
+// Database configuration with mongoose
+mongoose.connect("mongodb://heroku_z4pc1jc3:at937nnf358d3lf4i10fv4bhir@ds119113.mlab.com:19113/heroku_z4pc1jc3");
+//mongoose.connect("mongodb://onionscraperdb");
+var db = mongoose.connection;
+
+// Show any mongoose errors
+db.on("error", function(error) {
+  console.log("Mongoose Error: ", error);
+});
+
+// Once logged in to the db through mongoose, log a success message
+db.once("open", function() {
+  console.log("Mongoose connection successful.");
+});
+
+
+
+// var connectionString = "mongodb://localhost/onionscraperdb";
+
+// if(process.env.process.env.MLAB_USERNAME_WEBDEV) {
+//   var username = process.env.MLAB_USERNAME_WEBDEV;
+//   var password = process.env.MLAB_PASSWORD_WEBDEV;
+//   connectionString = "mongodb://" + username + ":" + password;
+//   connectionString += "@ds119113.mlab.com:19113/heroku_z4pc1jc3";
+// }
+
+// var db = mongoose.connect(connectionString);
+
+// module.exports = db;
+
+
+
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
+// var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
 
-mongoose.connect(db, function (error) {
-  if (error) {
-    console.log(error);
-  }
-  else {
-    console.log("Mongoose connection is successful");
-  }
-});
+// mongoose.connect(db, function (error) {
+//   if (error) {
+//     console.log(error);
+//   }
+//   else {
+//     console.log("Mongoose connection is successful");
+//   }
+// });
 
 
 
