@@ -44,19 +44,6 @@ app.use(router);
 
 
 
-// //connecting to MongoDB
-mongoose.connect('mongodb://heroku_t3qz1ftq:3924sd2sisot7tveq96vf1efk1@ds117623.mlab.com:17623/heroku_t3qz1ftq');
-
-// mongoose.connect('mongodb://localhost/scraper_news');
-
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('Connected to Mongoose!')
-});
-
-
 // var connectionString = "mongodb://localhost/onionscraperdb";
 
 // if(process.env.process.env.MLAB_USERNAME_WEBDEV) {
@@ -74,16 +61,16 @@ db.once('open', function() {
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
+var db = process.env.MONGODB_URI || "mongodb://localhost/onionscraperdb";
 
-// mongoose.connect(db, function (error) {
-//   if (error) {
-//     console.log(error);
-//   }
-//   else {
-//     console.log("Mongoose connection is successful");
-//   }
-// });
+mongoose.connect(db, function (error) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log("Mongoose connection is successful");
+  }
+});
 
 
 
