@@ -87,14 +87,14 @@ module.exports = function (router) {
 
             // Send a message to the client
             res.send("Scrape Complete");
-            console.log("********************************************** Scrape Complete **********************************************");
+            console.log("\x1b[33m", "\n********************************************** Scrape Complete **********************************************\n");
         });
     });
 
     // Route for getting all Articles from the db
     router.get("/articles", function (req, res) {
         // Grab every document in the Articles collection
-        db.Article.find({}).sort({date: -1})
+        db.Article.find({}).sort({ date: -1 })
             .then(function (dbArticle) {
                 // If we were able to successfully find Articles, send them back to the client
                 res.json(dbArticle);
@@ -153,7 +153,8 @@ module.exports = function (router) {
             body: req.body.text,
             article: req.params.id
         });
-        console.log(req.body)
+        console.log(req.body);
+        console.log("NEW NOTE: " + newNote);
         // And save the new note the db
         newNote.save(function (error, note) {
             // Log any errors
@@ -182,7 +183,12 @@ module.exports = function (router) {
     });
 
 
-
+    //Post new notes to articles
+    // router.post("/api/notes", function (req, res) {
+    //     dbArticle.save(req.body, function (data) {
+    //         res.json(data);
+    //     });
+    // });
 
     // Update the articles
     router.patch("/api/articles", function (req, res) {
