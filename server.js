@@ -96,6 +96,10 @@ mongoose.connect(db, function (error) {
 // });
 
 // Start the server
+// app.listen(PORT, function () {
+//   console.log("App running on port " + PORT + "!");
+// });
+
 app.listen(process.env.PORT || PORT, function () {
   console.log("App running on port " + PORT + "!");
 });
