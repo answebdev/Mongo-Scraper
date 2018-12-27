@@ -22,7 +22,9 @@ Mongo-Scraper uses Express, Node, MongoDB, Handlebars, jQuery, and JavaScript. N
 
 # "Mongo-Scraper: The Onion Edition" Live Link
 
-Mongo-Scraper is not yet ready for deployment.
+"Mongo-Scraper: The Onion Edition" is deployed to Heroku. Please check it out here:
+
+https://salty-springs-46730.herokuapp.com/
 
 # Screenshots
 
