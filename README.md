@@ -10,7 +10,7 @@ Mongo-Scraper uses Express, Node, MongoDB, Handlebars, jQuery, and JavaScript. N
 
 * Express.js
 * Node.js
-* NPM packages: Express, Express-Handlebars, Mongoose, Cheerio, Axis, Morgan
+* NPM packages: Express, Express-Handlebars, Mongoose, Cheerio, Axios, Morgan
 * MongoDB
 * Handlebars
 * AJAX/APIs
